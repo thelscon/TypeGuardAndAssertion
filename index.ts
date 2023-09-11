@@ -33,7 +33,7 @@ class Compamy {
         this.addDepartments ( this._bookkeeping ) ;
     }
 
-    // добавление департамента к компанию и взятие на баланс бухгалтером
+    // добавление департамента в компанию и взятие на баланс бухгалтером
     addDepartments ( department : Department ) : void {
         this._bookkeeping.takeToBalanceDepartment ( department ) ;
     }

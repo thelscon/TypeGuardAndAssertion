@@ -41,6 +41,7 @@ var Compamy = /** @class */ (function () {
         this._listOfPreEmployee = [];
         this.addDepartments(this._bookkeeping);
     }
+    // добавление департамента в компанию и взятие на баланс бухгалтером
     Compamy.prototype.addDepartments = function (department) {
         this._bookkeeping.takeToBalanceDepartment(department);
     };
@@ -66,6 +67,7 @@ var Department = /** @class */ (function () {
     Department.prototype.getCurrentBalance = function () {
         return this._budget;
     };
+    // перевод стажера в работники и взятие на баланс департамента
     Department.prototype.changeOfSalaryFund = function (employee, addRemove) {
         if (addRemove === 'add') {
             var newBudgetDebit = employee._salary + this._budget.debit;
@@ -141,6 +143,7 @@ var Employee = /** @class */ (function () {
     Employee.prototype.setStatus = function (status) {
         this._status = status;
     };
+    // получение зарплаты
     Employee.prototype.receivingASalary = function () {
         this._money += this._salary;
         return true;
@@ -159,6 +162,7 @@ var Bookkeeping = /** @class */ (function (_super) {
         _this._company = company;
         return _this;
     }
+    // добавление стажеров на общий баланс
     Bookkeeping.prototype.changeOfSalaryGlobalFund = function (employee, addRemove) {
         if (addRemove === 'add') {
             var newBudgetDebit = employee._salary + this._globalBudget.debit;
@@ -197,6 +201,7 @@ var Bookkeeping = /** @class */ (function (_super) {
             return false;
         }
     };
+    // добавление на баланс департамента
     Bookkeeping.prototype.changeOfBalanceDepartment = function (department, takeRemove) {
         if (takeRemove === 'take') {
             this._listOfDepartments.push(department);
@@ -232,6 +237,7 @@ var Bookkeeping = /** @class */ (function (_super) {
             return false;
         }
     };
+    // поиск и выплата зарплат сотрудникам и стажерам(через внешний сервис, в данном случае функцию)
     Bookkeeping.prototype.findEmployee = function (department, anyEmployee) {
         if (anyEmployee instanceof Employee) {
             var currentDepartment = this._listOfDepartments.find(function (value) { return value.getName() === department.getName(); });
