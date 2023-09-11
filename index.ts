@@ -33,6 +33,7 @@ class Compamy {
         this.addDepartments ( this._bookkeeping ) ;
     }
 
+    // добавление департамента к компанию и взятие на баланс бухгалтером
     addDepartments ( department : Department ) : void {
         this._bookkeeping.takeToBalanceDepartment ( department ) ;
     }
@@ -67,6 +68,7 @@ class Department {
         return this._budget ;
     }
 
+    // перевод стажера в работники и взятие на баланс департамента
     changeOfSalaryFund ( employee : Employee , addRemove : 'add' | 'remove' ) {
         if ( addRemove === 'add' ) {
             const newBudgetDebit = employee._salary + this._budget.debit ;
@@ -90,7 +92,6 @@ class Department {
             }
         }
     }
-
     addEmployee ( preEmployee : PreEmployee , salary ?: Salaries ) : void {
         const newEmployee = new Employee ( preEmployee , this , salary ) ;
         this._listOfEmployee.push ( newEmployee ) ;
@@ -167,6 +168,7 @@ class Employee {
         this._status = status ;
     }
 
+    // получение зарплаты
     receivingASalary () : boolean {
         this._money += this._salary ;
         return true ;
@@ -187,6 +189,7 @@ class Bookkeeping extends Department {
         this._company = company ;
     }
 
+    // добавление стажеров на общий баланс
     changeOfSalaryGlobalFund ( employee : PreEmployee , addRemove : 'add' | 'remove' ) {
         if ( addRemove === 'add' ) {
             const newBudgetDebit = employee._salary + this._globalBudget.debit ;
@@ -226,6 +229,7 @@ class Bookkeeping extends Department {
         }
     }
 
+    // добавление на баланс департамента
     changeOfBalanceDepartment ( department : Department , takeRemove : 'take' | 'remove' ) : boolean {
         if ( takeRemove === 'take' ) {
             this._listOfDepartments.push ( department ) ;
@@ -265,6 +269,7 @@ class Bookkeeping extends Department {
         }
     }
 
+    // поиск и выплата зарплат сотрудникам и стажерам(через внешний сервис, в данном случае функцию)
     findEmployee ( department : Department , anyEmployee : Employee | PreEmployee ) : Employee | PreEmployee | undefined {
         if ( anyEmployee instanceof Employee ) {
             const currentDepartment = this._listOfDepartments.find ( value => value.getName() === department.getName() ) ;
