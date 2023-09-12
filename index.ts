@@ -34,6 +34,10 @@ class Compamy {
         this.addDepartments ( this._bookkeeping ) ;
     }
 
+    getOfAllDepartmentEmployee () : Employee[] {
+        return this._listOfAllDepartmentEmployee ;
+    }
+
     // пересчёт сотрудников всех департаментов
     recountOfAllDepartmentEmployee () : void {
         this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap ( ( value : Department ) => value._listOfEmployee ) ;
