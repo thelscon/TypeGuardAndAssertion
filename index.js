@@ -39,14 +39,20 @@ var Compamy = /** @class */ (function () {
         this._bookkeeping = new Bookkeeping(this, 'Bookkeeping', DepartmentDomainArea.Bookkeeping, 100000); // в компании есть бухгалтер
         this._listOfDepartments = [];
         this._listOfPreEmployee = [];
+        this._listOfAllDepartmentEmployee = [];
         this.addDepartments(this._bookkeeping);
     }
+    Compamy.prototype.recountOfAllDepartmentEmployee = function () {
+        this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap(function (value) { return value._listOfEmployee; });
+    };
     // добавление департамента в компанию и взятие на баланс бухгалтером
     Compamy.prototype.addDepartments = function (department) {
         this._bookkeeping.takeToBalanceDepartment(department);
+        this.recountOfAllDepartmentEmployee();
     };
     Compamy.prototype.removeDepartments = function (department) {
         this._bookkeeping.removeToBalanceDepartment(department);
+        this.recountOfAllDepartmentEmployee();
     };
     return Compamy;
 }());
