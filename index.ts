@@ -28,15 +28,16 @@ class Compamy {
 
     _listOfDepartments : Department[] = [] ;
     _listOfPreEmployee : PreEmployee[]= [] ;
-    _listOfAllDepartmentEmployee : Employee[] = [] ;
+
+    // "живой" список сотрудников всех департаментов, т.к. их могут нанимать и увольнять
+    get listOfAllDepartmentEmployee () : Employee[] {
+        return this._listOfDepartments.flatMap ( ( value : Department ) => value._listOfEmployee ) ;
+    }
 
     constructor () {
         this.addDepartments ( this._bookkeeping ) ;
     }
 
-    getOfAllDepartmentEmployee () : Employee[] {
-        return this._listOfAllDepartmentEmployee ;
-    }
     getOfOfPreEmployee () : PreEmployee[] {
         return this._listOfPreEmployee ;
     }
@@ -47,19 +48,12 @@ class Compamy {
         return  this._name ;
     }
 
-    // пересчёт сотрудников всех департаментов
-    recountOfAllDepartmentEmployee () : void {
-        this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap ( ( value : Department ) => value._listOfEmployee ) ;
-    }
-
-    // добавление департамента в компанию, взятие на баланс бухгалтером и пересчёт
+        // добавление департамента в компанию, взятие на баланс бухгалтером
     addDepartments ( department : Department ) : void {
         this._bookkeeping.takeToBalanceDepartment ( department ) ;
-        this.recountOfAllDepartmentEmployee () ;
     }
     removeDepartments ( department : Department ) : void {
         this._bookkeeping.removeToBalanceDepartment ( department ) ;
-        this.recountOfAllDepartmentEmployee () ;
     }
 }
 
