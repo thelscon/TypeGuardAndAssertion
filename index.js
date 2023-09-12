@@ -42,11 +42,17 @@ var Compamy = /** @class */ (function () {
         this._listOfAllDepartmentEmployee = [];
         this.addDepartments(this._bookkeeping);
     }
+    Compamy.prototype.getOfAllDepartmentEmployee = function () {
+        return this._listOfAllDepartmentEmployee;
+    };
+    Compamy.prototype.getOfOfPreEmployee = function () {
+        return this._listOfPreEmployee;
+    };
     // пересчёт сотрудников всех департаментов
     Compamy.prototype.recountOfAllDepartmentEmployee = function () {
         this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap(function (value) { return value._listOfEmployee; });
     };
-    // добавление департамента в компанию и взятие на баланс бухгалтером
+    // добавление департамента в компанию, взятие на баланс бухгалтером и пересчёт
     Compamy.prototype.addDepartments = function (department) {
         this._bookkeeping.takeToBalanceDepartment(department);
         this.recountOfAllDepartmentEmployee();
