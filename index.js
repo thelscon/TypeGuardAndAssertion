@@ -42,6 +42,7 @@ var Compamy = /** @class */ (function () {
         this._listOfAllDepartmentEmployee = [];
         this.addDepartments(this._bookkeeping);
     }
+    // пересчёт сотрудников всех департаментов
     Compamy.prototype.recountOfAllDepartmentEmployee = function () {
         this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap(function (value) { return value._listOfEmployee; });
     };

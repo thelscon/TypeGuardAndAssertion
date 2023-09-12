@@ -34,8 +34,9 @@ class Compamy {
         this.addDepartments ( this._bookkeeping ) ;
     }
 
+    // пересчёт сотрудников всех департаментов
     recountOfAllDepartmentEmployee () : void {
-        this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap ( value => value._listOfEmployee ) ;
+        this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap ( ( value : Department ) => value._listOfEmployee ) ;
     }
 
     // добавление департамента в компанию и взятие на баланс бухгалтером
