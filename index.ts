@@ -39,7 +39,7 @@ class Compamy {
         this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap ( ( value : Department ) => value._listOfEmployee ) ;
     }
 
-    // добавление департамента в компанию и взятие на баланс бухгалтером
+    // добавление департамента в компанию, взятие на баланс бухгалтером и пересчёт
     addDepartments ( department : Department ) : void {
         this._bookkeeping.takeToBalanceDepartment ( department ) ;
         this.recountOfAllDepartmentEmployee () ;
