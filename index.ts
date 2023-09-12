@@ -40,6 +40,12 @@ class Compamy {
     getOfOfPreEmployee () : PreEmployee[] {
         return this._listOfPreEmployee ;
     }
+    getOfDepartments () : Department[] {
+        return this._listOfDepartments ;
+    }
+    getName () : string {
+        return  this._name ;
+    }
 
     // пересчёт сотрудников всех департаментов
     recountOfAllDepartmentEmployee () : void {

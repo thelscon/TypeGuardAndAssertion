@@ -48,6 +48,12 @@ var Compamy = /** @class */ (function () {
     Compamy.prototype.getOfOfPreEmployee = function () {
         return this._listOfPreEmployee;
     };
+    Compamy.prototype.getOfDepartments = function () {
+        return this._listOfDepartments;
+    };
+    Compamy.prototype.getName = function () {
+        return this._name;
+    };
     // пересчёт сотрудников всех департаментов
     Compamy.prototype.recountOfAllDepartmentEmployee = function () {
         this._listOfAllDepartmentEmployee = this._listOfDepartments.flatMap(function (value) { return value._listOfEmployee; });
